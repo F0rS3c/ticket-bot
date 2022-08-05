@@ -2,35 +2,34 @@ module.exports = {
   name: 'ready',
   async execute(client) {
     console.log('Bot Online!')
-    console.log('Bot Dev Sayrix');
     const oniChan = client.channels.cache.get(client.config.ticketChannel)
 
     function sendTicketMSG() {
       const embed = new client.discord.MessageEmbed()
         .setColor('ff0000')
-        .setAuthor('Ticket create', client.user.avatarURL())
-        .setDescription('Welcome to Ticket Support\n\nThere are four different types of tickets. To open a ticket,\nclick just click on the right button\n\nSupport-Ticket\nSupport Ticket For everything related to the server\n• Apply\n• Support\n• General\n• Complaint\n• Hosting\n\n• Apply\n• Hosting\n• Support & Questions\n• General questions and topics\n\nAbuse is punished with a courage / ban.')
-        .setFooter(client.config.footerText, client.user.avatarURL())
+        .setAuthor('Pacific Bluffs', client.user.avatarURL())
+        .setDescription('Welcome to ticket office  \n\n There are four different types of tickets. To ** BUY ** a ticket,\nclick just on the right button\n\nTicket for everything related to our club\n• Normal\n• Pool\n• Vip\n• Premium\n')
       const row = new client.discord.MessageActionRow()
         .addComponents(
           new client.discord.MessageButton()
           .setCustomId('open-ticket')
-          .setLabel('Ticket create')
+          .setLabel('Buy')
           .setEmoji('🎫')
-          .setStyle('PRIMARY'),
+          .setStyle('SUCCESS'),
         );
 
       oniChan.send({
         embeds: [embed],
         components: [row]
       })
+      
     }
 
     const toDelete = 10000;
 
     async function fetchMore(channel, limit) {
       if (!channel) {
-        throw new Error(`Kanal created ${typeof channel}.`);
+        throw new Error(`channel created ${typeof channel}.`);
       }
       if (limit <= 100) {
         return channel.messages.fetch({
